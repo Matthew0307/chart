@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import chartData from "../src/data.json";
+import { LineChart } from "../src/components/LineChart";
 
 function App() {
+  const [data, setData] = useState([]);
+  const [isReady,setIsReady] = useState(false);
+  useEffect(() => {
+    if(!isReady){
+      setIsReady(true);
+      return;
+    }
+    if (chartData) {
+      setData(chartData);
+    }
+  }, [isReady]);
+
+  if (!data || !isReady) {
+    return <a>Loading</a>
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <LineChart data={data} />
     </div>
   );
 }
