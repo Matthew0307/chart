@@ -114,10 +114,8 @@ export const LineChart = ({ data }) => {
           return (
             <g key={index}>
               <text
-                fill="#666"
                 x={getX(item.x)}
                 y={getY(item.y) - 20}
-                textAnchor="middle"
               >
                 {index === activeIndex ? item.y : ""}
               </text>
@@ -131,7 +129,6 @@ export const LineChart = ({ data }) => {
                 fill={color}
                 strokeWidth={index === activeIndex ? 2 : 0}
                 stroke="#fff"
-                style={{ transition: "ease-out .1s" }}
               />
             </g>
           );
